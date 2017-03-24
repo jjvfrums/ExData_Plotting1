@@ -1,0 +1,10 @@
+rm(list=ls())
+setwd("D:\\CoureseraR\\ExploratoryDataAnalysis\\Fhousehold_power_consumption")
+getwd()
+data <- read.table("./household_power_consumption.txt", header=TRUE, sep = ";", na.strings = "?")
+data$datetime1 <- strptime(paste(as.Date(data$Date,"%d/%m/%Y"),data$Time),"%Y-%m-%d %H:%M:%S")
+data2 <- subset(data,data$datetime1 >= "2007-02-01 00:00:00" & data$datetime1 <= "2007-02-02 23:59:59")
+png(file="./plot1.png",    width = 480, height = 480, units = "px")
+with(data2,hist(Global_active_power,col="red",xlab="Global Active Power (kilowatts)",ylab="Frequency",main ="Global Active Power"))
+dev.off()
+                                                                                                                                        
